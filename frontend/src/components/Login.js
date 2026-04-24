@@ -1,0 +1,73 @@
+import React, { useState } from 'react';
+import { login } from '../services/api';
+
+function Login({ onLogin }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      const data = await login(email, password);
+      onLogin(data.user, data.token);
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const autoFill = () => {
+    setEmail('admin@autogenius.com');
+    setPassword('password123');
+  };
+
+  return (
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-logo">
+          <h1>AutoGenius AI</h1>
+          <p>Dealership Sales Optimizer</p>
+        </div>
+
+        {error && <div className="login-error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" className="btn-primary" disabled={loading}>
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+
+        <button className="auto-fill-btn" onClick={autoFill}>
+          Quick Login (Demo Credentials)
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
