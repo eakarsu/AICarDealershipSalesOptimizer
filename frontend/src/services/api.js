@@ -162,3 +162,23 @@ export const getSettings = () => request('/settings');
 export const getSettingsFlat = () => request('/settings/flat');
 export const updateSetting = (id, value) => request(`/settings/${id}`, { method: 'PUT', body: JSON.stringify({ setting_value: value }) });
 export const bulkUpdateSettings = (settings) => request('/settings/bulk/update', { method: 'PUT', body: JSON.stringify({ settings }) });
+
+// New AI Studio features
+export const aiTradeInPhoto = (body) => request('/ai/trade-in-photo-analysis', { method: 'POST', body: JSON.stringify(body) });
+export const aiInventoryAging = (body) => request('/ai/inventory-aging', { method: 'POST', body: JSON.stringify(body) });
+export const aiPaymentOptimizer = (body) => request('/ai/payment-optimizer', { method: 'POST', body: JSON.stringify(body) });
+export const aiMarketDemand = (body) => request('/ai/market-demand', { method: 'POST', body: JSON.stringify(body) });
+export const aiCustomerPersona = (body) => request('/ai/customer-persona', { method: 'POST', body: JSON.stringify(body) });
+export const aiWarrantyAnalyzer = (body) => request('/ai/warranty-analyzer', { method: 'POST', body: JSON.stringify(body) });
+export const aiComplianceChecker = (body) => request('/ai/compliance-checker', { method: 'POST', body: JSON.stringify(body) });
+export const aiSalesCoach = (body) => request('/ai/sales-coach', { method: 'POST', body: JSON.stringify(body) });
+export const aiResultsHistory = (page = 1, limit = 20, feature = '') => {
+  const qs = new URLSearchParams({ page, limit, ...(feature ? { feature } : {}) }).toString();
+  return request(`/ai/results?${qs}`);
+};
+
+// Webhooks
+export const listWebhooks = () => request('/webhooks');
+export const createWebhook = (data) => request('/webhooks', { method: 'POST', body: JSON.stringify(data) });
+export const deleteWebhook = (id) => request(`/webhooks/${id}`, { method: 'DELETE' });
+export const testWebhook = (id) => request(`/webhooks/${id}/test`, { method: 'POST' });

@@ -307,6 +307,19 @@ async function seed() {
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
       );
+
+      CREATE TABLE IF NOT EXISTS ai_results (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+        feature VARCHAR(100) NOT NULL,
+        input JSONB,
+        output JSONB,
+        model VARCHAR(100),
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+      CREATE INDEX IF NOT EXISTS idx_ai_results_feature ON ai_results(feature);
+      CREATE INDEX IF NOT EXISTS idx_ai_results_user ON ai_results(user_id);
+      CREATE INDEX IF NOT EXISTS idx_ai_results_created ON ai_results(created_at DESC);
     `);
 
     console.log('✓ Tables created');

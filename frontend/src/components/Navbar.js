@@ -23,6 +23,8 @@ function Navbar({ user, onLogout }) {
     { path: '/documents', label: 'Documents' },
     { path: '/reports', label: 'Reports' },
     { path: '/settings', label: 'Settings' },
+    { path: '/ai-studio', label: 'AI Studio' },
+    { path: '/webhooks', label: 'Webhooks' },
   ];
 
   return (
