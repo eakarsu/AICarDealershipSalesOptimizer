@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = (typeof window !== 'undefined' && window.__API_BASE__) || 'http://localhost:5847/api';
 
 function getHeaders() {
   const token = localStorage.getItem('token');

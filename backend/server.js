@@ -92,3 +92,11 @@ app.use('/api/gap-no-direct-dms-api-clients-cdk-reynolds-reynolds-be', require('
 app.use('/api/gap-no-e-signature-f-i-document-execution-flow', require('./routes/gap_no_e_signature_f_i_document_execution_flow'));
 app.use('/api/gap-no-vehicle-history-carfax-autocheck-integration', require('./routes/gap_no_vehicle_history_carfax_autocheck_integration'));
 app.use('/api/gap-no-website-widget-for-self-serve-inventory-browsin', require('./routes/gap_no_website_widget_for_self_serve_inventory_browsin'));
+
+// Custom Dealer Views (2 viz + 2 non-viz) — mount BEFORE 404 handler
+app.use('/api/custom-views', require('./routes/customViews'));
+
+// 404 handler (must be after all routes)
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: 'Not Found', path: req.originalUrl });
+});

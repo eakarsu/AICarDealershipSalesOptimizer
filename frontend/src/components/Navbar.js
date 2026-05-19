@@ -25,6 +25,7 @@ function Navbar({ user, onLogout }) {
     { path: '/settings', label: 'Settings' },
     { path: '/ai-studio', label: 'AI Studio' },
     { path: '/webhooks', label: 'Webhooks' },
+    { path: '/custom-views', label: 'Sales Views' },
   ];
 
   return (
