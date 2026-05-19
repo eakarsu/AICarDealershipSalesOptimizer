@@ -1,0 +1,104 @@
+{
+  "project": "AICarDealershipSalesOptimizer",
+  "marker": "// === Batch 01 Gaps & Frontend Mounts ===",
+  "features": [
+    {
+      "slug": "agentic-sdr-responding-to-leads-qualifying-and-boo",
+      "component": "AgenticSdrRespondingToLeadsQualifyingAndBooPage",
+      "label": "Agentic SDR responding to leads, qualifying, and booking test drives",
+      "endpoint": "/api/cf-agentic-sdr-responding-to-leads-qualifying-and-boo",
+      "kind": "cfs"
+    },
+    {
+      "slug": "rag-over-manufacturer-specs-and-finance-programs-f",
+      "component": "RagOverManufacturerSpecsAndFinanceProgramsFPage",
+      "label": "RAG over manufacturer specs and finance programs for accurate buyer Q&A",
+      "endpoint": "/api/cf-rag-over-manufacturer-specs-and-finance-programs-f",
+      "kind": "cfs"
+    },
+    {
+      "slug": "real-time-inventory-pricing-optimization-vs-compet",
+      "component": "RealTimeInventoryPricingOptimizationVsCompetPage",
+      "label": "Real-time inventory-pricing optimization vs. competitor listings",
+      "endpoint": "/api/cf-real-time-inventory-pricing-optimization-vs-compet",
+      "kind": "cfs"
+    },
+    {
+      "slug": "white-label-crm-for-dealer-groups-managing-multi-r",
+      "component": "WhiteLabelCrmForDealerGroupsManagingMultiRPage",
+      "label": "White-label CRM for dealer groups managing multi-rooftop operations",
+      "endpoint": "/api/cf-white-label-crm-for-dealer-groups-managing-multi-r",
+      "kind": "cfs"
+    },
+    {
+      "slug": "ainew-js-scaffold-but-no-mounted-chat-style-ai-end",
+      "component": "AinewJsScaffoldButNoMountedChatStyleAiEndPage",
+      "label": "aiNew.js scaffold but no mounted /chat-style AI endpoints",
+      "endpoint": "/api/gap-ainew-js-scaffold-but-no-mounted-chat-style-ai-end",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-ai-lead-scoring-on-inbound-contacts",
+      "component": "NoAiLeadScoringOnInboundContactsPage",
+      "label": "No AI lead-scoring on inbound contacts",
+      "endpoint": "/api/gap-no-ai-lead-scoring-on-inbound-contacts",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-ai-vehicle-photo-enhancement-and-listing-copy",
+      "component": "NoAiVehiclePhotoEnhancementAndListingCopyPage",
+      "label": "No AI vehicle-photo enhancement and listing copy",
+      "endpoint": "/api/gap-no-ai-vehicle-photo-enhancement-and-listing-copy",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-ai-trade-in-valuation",
+      "component": "NoAiTradeInValuationPage",
+      "label": "No AI trade-in valuation",
+      "endpoint": "/api/gap-no-ai-trade-in-valuation",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-ai-deal-desk-negotiation-co-pilot",
+      "component": "NoAiDealDeskNegotiationCoPilotPage",
+      "label": "No AI deal-desk negotiation co-pilot",
+      "endpoint": "/api/gap-no-ai-deal-desk-negotiation-co-pilot",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-notification-system-sms-email-delivery-channel",
+      "component": "NoNotificationSystemSmsEmailDeliveryChannelPage",
+      "label": "No notification system / SMS/email delivery channel",
+      "endpoint": "/api/gap-no-notification-system-sms-email-delivery-channel",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-direct-dms-api-clients-cdk-reynolds-reynolds-be",
+      "component": "NoDirectDmsApiClientsCdkReynoldsReynoldsBePage",
+      "label": "No direct DMS API clients (CDK, Reynolds & Reynolds) beyond integrations scaffold",
+      "endpoint": "/api/gap-no-direct-dms-api-clients-cdk-reynolds-reynolds-be",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-e-signature-f-i-document-execution-flow",
+      "component": "NoESignatureFIDocumentExecutionFlowPage",
+      "label": "No e-signature/F&I document execution flow",
+      "endpoint": "/api/gap-no-e-signature-f-i-document-execution-flow",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-vehicle-history-carfax-autocheck-integration",
+      "component": "NoVehicleHistoryCarfaxAutocheckIntegrationPage",
+      "label": "No vehicle history (Carfax/AutoCheck) integration",
+      "endpoint": "/api/gap-no-vehicle-history-carfax-autocheck-integration",
+      "kind": "gap"
+    },
+    {
+      "slug": "no-website-widget-for-self-serve-inventory-browsin",
+      "component": "NoWebsiteWidgetForSelfServeInventoryBrowsinPage",
+      "label": "No website widget for self-serve inventory browsing",
+      "endpoint": "/api/gap-no-website-widget-for-self-serve-inventory-browsin",
+      "kind": "gap"
+    }
+  ]
+}

@@ -20,6 +20,9 @@ import CommissionsPage from './pages/CommissionsPage';
 import DocumentsPage from './pages/DocumentsPage';
 import ReportsPage from './pages/ReportsPage';
 import SettingsPage from './pages/SettingsPage';
+import AIStudioPage from './pages/AIStudioPage';
+import WebhooksPage from './pages/WebhooksPage';
+import CustomViewsPage from './pages/CustomViewsPage';
 import './App.css';
 
 function App() {
@@ -75,6 +78,9 @@ function App() {
             <Route path="/documents" element={<DocumentsPage />} />
             <Route path="/reports" element={<ReportsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/ai-studio" element={<AIStudioPage />} />
+            <Route path="/webhooks" element={<WebhooksPage />} />
+            <Route path="/custom-views" element={<CustomViewsPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
