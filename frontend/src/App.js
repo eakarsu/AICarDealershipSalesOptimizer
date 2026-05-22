@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import InventoryPage from './pages/InventoryPage';
 import CustomersPage from './pages/CustomersPage';
 import TradeInsPage from './pages/TradeInsPage';
+import TradeInConfidencePage from './pages/TradeInConfidencePage';
 import FniPage from './pages/FniPage';
 import LeadsPage from './pages/LeadsPage';
 import DealsPage from './pages/DealsPage';
@@ -24,6 +25,11 @@ import AIStudioPage from './pages/AIStudioPage';
 import WebhooksPage from './pages/WebhooksPage';
 import CustomViewsPage from './pages/CustomViewsPage';
 import './App.css';
+
+import CodexCustomVizFeature from './pages/CodexCustomVizFeature';
+import CodexOperationsFeature from './pages/CodexOperationsFeature';
+
+import TimelineView from './pages/TimelineView';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -60,10 +66,15 @@ function App() {
         <Navbar user={user} onLogout={handleLogout} />
         <main className="main-content">
           <Routes>
+        <Route path="/insights/timeline" element={<TimelineView />} />
+        <Route path="/codex/custom-viz" element={<CodexCustomVizFeature />} />
+        <Route path="/codex/operations" element={<CodexOperationsFeature />} />
+
             <Route path="/" element={<Dashboard />} />
             <Route path="/inventory" element={<InventoryPage />} />
             <Route path="/customers" element={<CustomersPage />} />
             <Route path="/trade-ins" element={<TradeInsPage />} />
+            <Route path="/trade-in-confidence" element={<TradeInConfidencePage />} />
             <Route path="/fni" element={<FniPage />} />
             <Route path="/leads" element={<LeadsPage />} />
             <Route path="/deals" element={<DealsPage />} />

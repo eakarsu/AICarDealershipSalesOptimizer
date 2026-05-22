@@ -47,6 +47,7 @@ export const createTradeIn = (data) => request('/trade-ins', { method: 'POST', b
 export const updateTradeIn = (id, data) => request(`/trade-ins/${id}`, { method: 'PUT', body: JSON.stringify(data) });
 export const deleteTradeIn = (id) => request(`/trade-ins/${id}`, { method: 'DELETE' });
 export const aiValuateTradeIn = (id) => request(`/trade-ins/${id}/ai-valuate`, { method: 'POST' });
+export const tradeInConfidenceScore = (body) => request('/trade-in-confidence/score', { method: 'POST', body: JSON.stringify(body) });
 
 // F&I Products
 export const getFniProducts = () => request('/fni-products');

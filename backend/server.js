@@ -26,6 +26,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/inventory', require('./routes/inventory'));
 app.use('/api/customers', require('./routes/customers'));
 app.use('/api/trade-ins', require('./routes/tradeins'));
+app.use('/api/trade-in-confidence', require('./routes/tradeInConfidence'));
 app.use('/api/fni-products', require('./routes/fni'));
 app.use('/api/leads', require('./routes/leads'));
 app.use('/api/deals', require('./routes/deals'));

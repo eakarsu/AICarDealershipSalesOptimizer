@@ -9,6 +9,7 @@ function Navbar({ user, onLogout }) {
     { path: '/inventory', label: 'Inventory' },
     { path: '/customers', label: 'Customers' },
     { path: '/trade-ins', label: 'Trade-Ins' },
+    { path: '/trade-in-confidence', label: 'Trade-In Confidence' },
     { path: '/fni', label: 'F&I Products' },
     { path: '/leads', label: 'Leads' },
     { path: '/deals', label: 'Deals' },

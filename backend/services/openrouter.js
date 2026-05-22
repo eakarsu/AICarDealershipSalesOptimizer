@@ -2,7 +2,7 @@ const https = require('https');
 require('dotenv').config({ path: '../.env' });
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const OPENROUTER_MODEL = 'anthropic/claude-3-5-sonnet-20241022';
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'anthropic/claude-3-5-sonnet-20241022';
 const DEALERSHIP_SYSTEM_PROMPT = 'You are an expert automotive deal analyst and dealership operations specialist. Provide data-driven insights for sales optimization and customer management.';
 
 async function callOpenRouter(systemPrompt, userPrompt) {
