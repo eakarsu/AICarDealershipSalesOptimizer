@@ -7,10 +7,12 @@ const pool = new Pool({
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || 'car_dealership',
   user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
+  password: process.env.DB_PASSWORD,
 });
 
 async function seed() {
+  if (process.env.CONFIRM_DEMO_SEED !== 'yes' || process.env.NODE_ENV === 'production') throw new Error('Demo seed requires CONFIRM_DEMO_SEED=yes outside production');
+  if (!process.env.DEMO_PASSWORD || process.env.DEMO_PASSWORD.length < 12) throw new Error('DEMO_PASSWORD must contain at least 12 characters');
   const client = await pool.connect();
 
   try {
@@ -325,7 +327,7 @@ async function seed() {
     console.log('✓ Tables created');
 
     // Seed Users
-    const hashedPassword = await bcrypt.hash('password123', 10);
+    const hashedPassword = await bcrypt.hash(process.env.DEMO_PASSWORD, 10);
     await client.query(`
       INSERT INTO users (email, password, name, role) VALUES
       ('admin@autogenius.com', '${hashedPassword}', 'Mike Johnson', 'admin'),

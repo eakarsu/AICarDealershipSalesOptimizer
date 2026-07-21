@@ -21,11 +21,6 @@ function Login({ onLogin }) {
     }
   };
 
-  const autoFill = () => {
-    setEmail('admin@autogenius.com');
-    setPassword('password123');
-  };
-
   return (
     <div className="login-container">
       <div className="login-card">
@@ -62,9 +57,6 @@ function Login({ onLogin }) {
           </button>
         </form>
 
-        <button className="auto-fill-btn" onClick={autoFill}>
-          Quick Login (Demo Credentials)
-        </button>
       </div>
     </div>
   );
