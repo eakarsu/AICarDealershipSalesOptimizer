@@ -15,7 +15,7 @@ const {
   coachSalesSkills,
 } = require('../services/openrouter');
 
-const MODEL = 'anthropic/claude-3-5-sonnet-20241022';
+const MODEL = process.env.OPENROUTER_MODEL || 'anthropic/claude-3-5-sonnet-20241022';
 
 function validate(req, res, next) {
   const errors = validationResult(req);

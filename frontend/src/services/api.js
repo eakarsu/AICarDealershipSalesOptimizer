@@ -1,4 +1,5 @@
-const API_BASE = (typeof window !== 'undefined' && window.__API_BASE__) || 'http://localhost:5847/api';
+const API_BASE = (typeof window !== 'undefined' && window.__API_BASE__) ||
+  process.env.REACT_APP_API_URL || 'http://localhost:5847/api';
 
 function getHeaders() {
   const token = localStorage.getItem('token');

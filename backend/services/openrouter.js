@@ -3,6 +3,7 @@ require('dotenv').config({ path: '../.env' });
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'anthropic/claude-3-5-sonnet-20241022';
+const openRouterUrl = new URL('/api/v1/chat/completions', process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai');
 const DEALERSHIP_SYSTEM_PROMPT = 'You are an expert automotive deal analyst and dealership operations specialist. Provide data-driven insights for sales optimization and customer management.';
 
 async function callOpenRouter(systemPrompt, userPrompt) {
@@ -18,8 +19,9 @@ async function callOpenRouter(systemPrompt, userPrompt) {
     });
 
     const options = {
-      hostname: 'openrouter.ai',
-      path: '/api/v1/chat/completions',
+      hostname: openRouterUrl.hostname,
+      port: openRouterUrl.port || 443,
+      path: openRouterUrl.pathname,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/database');
-const { JWT_SECRET } = require('../middleware/auth');
+const { JWT_SECRET, authenticateToken } = require('../middleware/auth');
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
     }
 
     const user = result.rows[0];
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.password_hash);
 
     if (!validPassword) {
       return res.status(401).json({ error: 'Invalid email or password' });
@@ -50,7 +50,7 @@ router.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await pool.query(
-      'INSERT INTO users (email, password, name, role) VALUES ($1, $2, $3, $4) RETURNING id, email, name, role',
+      'INSERT INTO users (email, password_hash, name, role) VALUES ($1, $2, $3, $4) RETURNING id, email, name, role',
       [email, hashedPassword, name, 'sales']
     );
 
@@ -66,6 +66,10 @@ router.post('/register', async (req, res) => {
     console.error('Register error:', err);
     res.status(500).json({ error: 'Server error' });
   }
+});
+
+router.get('/me', authenticateToken, (req, res) => {
+  res.json({ user: req.user });
 });
 
 module.exports = router;
