@@ -16,6 +16,13 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at    TIMESTAMPTZ  DEFAULT NOW()
 );
 
+-- Earlier demo databases stored the hash in a legacy `password` column.
+-- Keep upgrades additive and let the local provisioner populate password_hash.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS password_hash VARCHAR(255);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS name VARCHAR(255);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(50) DEFAULT 'user';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
+
 -- ─────────────────────────────────────────────────────────────
 -- Staff
 -- ─────────────────────────────────────────────────────────────
@@ -103,6 +110,7 @@ CREATE TABLE IF NOT EXISTS leads (
   created_at       TIMESTAMPTZ DEFAULT NOW(),
   updated_at       TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS assigned_to INTEGER REFERENCES staff(id) ON DELETE SET NULL;
 
 -- ─────────────────────────────────────────────────────────────
 -- Deals
