@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
 import InventoryPage from './pages/InventoryPage';
 import CustomersPage from './pages/CustomersPage';
 import TradeInsPage from './pages/TradeInsPage';
@@ -63,8 +62,8 @@ function App() {
 
   return (
     <Router>
-      <div className="app-shell">
-        <Sidebar user={user} onLogout={handleLogout} />
+      <div className="app">
+        <Navbar user={user} onLogout={handleLogout} />
         <main className="main-content">
           <Routes>
         <Route path="/insights/timeline" element={<TimelineView />} />
