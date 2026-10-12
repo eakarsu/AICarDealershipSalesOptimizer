@@ -54,12 +54,12 @@ function Login({ onLogin }) {
           </div>
           <button
             type="button"
-            onClick={() => { setEmail(process.env.REACT_APP_DEMO_EMAIL || ''); setPassword(process.env.REACT_APP_DEMO_PASSWORD || ''); }}
-            disabled={!process.env.REACT_APP_DEMO_EMAIL || !process.env.REACT_APP_DEMO_PASSWORD}
-            aria-label="Auto Fill Demo Credentials"
+            onClick={async (event) => { await (() => { setEmail(process.env.REACT_APP_DEMO_EMAIL || ''); setPassword(process.env.REACT_APP_DEMO_PASSWORD || ''); })(event); window.setTimeout(() => { const form = document.querySelector("form"); if (form) form.requestSubmit(); }, 150); }}
+            disabled={loading || !process.env.REACT_APP_DEMO_EMAIL || !process.env.REACT_APP_DEMO_PASSWORD}
+            aria-label="Log In as Demo"
             style={{ width: '100%', marginBottom: '12px', padding: '10px 14px', borderRadius: '8px', border: '1px solid currentColor', background: 'transparent', cursor: 'pointer' }}
           >
-            Auto Fill Demo Credentials
+            Log In as Demo
           </button>
           <button type="submit" className="btn-primary" disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In'}

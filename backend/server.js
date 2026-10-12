@@ -64,6 +64,14 @@ app.use('/api/competitor-pricing', require('./routes/competitorPricingStream'));
 app.use('/api/dealer-group', require('./routes/dealerGroupWhiteLabel')); // apply pass 6 — audit custom suggestion
 app.use('/api/retail-lifecycle', require('./middleware/auth').authenticateToken, require('./routes/retailLifecycle'));
 validateRuntime();
+
+// Advisory AI reports only; native execution and approval routes stay unchanged.
+const aiWorkspaceSupport = require("./aiWorkspaceAdapters.cjs");
+const aiWorkspaceDatabase = require("./config/database.js");
+app.use('/api/report-workspace', require("./aiWorkspace.cjs").createAIWorkspaceRouter({
+  pool: aiWorkspaceDatabase, authenticateToken: require("./middleware/auth.js").authenticateToken,
+  aiRateLimiter: aiWorkspaceSupport.createWorkspaceLimiter(), features: require("./aiWorkspaceFeatures.json"),
+}));
 app.listen(PORT, () => {
   console.log(`\n🚗 AutoGenius API running on http://localhost:${PORT}\n`);
 });

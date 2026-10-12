@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AIReport from '../components/AIReport';
 import { tradeInConfidenceScore } from '../services/api';
 
 const sample = JSON.stringify({
@@ -35,37 +36,15 @@ export default function TradeInConfidencePage() {
       <p>Score offer confidence, equity, and reconditioning risk before the desk commits.</p>
       <div className="grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         <div className="card">
-          <textarea value={payload} onChange={(event) => setPayload(event.target.value)} rows={16} style={{ width: '100%', fontFamily: 'monospace' }} />
+          <div className="ai-preset-bar"><div><strong>Complete fictional trade-in examples</strong><p>Includes optional payoff, offer and market range. Verify title and condition evidence separately.</p></div><div className="ai-actions">{['Standard trade-in', 'Higher mileage', 'Equity review'].map((label, index) => <button key={label} type="button" className="btn btn-secondary" disabled={loading} onClick={() => { const value = JSON.parse(sample); value.vehicle.mileage += index * 12000; value.payoff += index * 2000; value.offer -= index * 1000; setPayload(JSON.stringify(value, null, 2)); }}>{label}</button>)}</div></div>
+          <textarea aria-label="Trade-in request JSON" value={payload} onChange={(event) => setPayload(event.target.value)} rows={16} style={{ width: '100%', fontFamily: 'monospace' }} />
           {error && <div className="error">{error}</div>}
           <button className="btn btn-primary" onClick={run} disabled={loading}>{loading ? 'Scoring...' : 'Score trade-in'}</button>
         </div>
         <div className="card">
-          {result ? (
-            <div>
-              <h2>{result.vehicleLabel}</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
-                <Metric label="Confidence" value={`${result.confidence}%`} />
-                <Metric label="Equity" value={`$${Math.round(result.equity).toLocaleString()}`} />
-                <Metric label="Recon" value={result.reconditioningRisk} />
-              </div>
-              <h3>Desk range</h3>
-              <p>Floor ${result.deskRange.floor.toLocaleString()} | Target ${result.deskRange.target.toLocaleString()} | Stretch ${result.deskRange.stretch.toLocaleString()}</p>
-              <ul>{result.talkingPoints.map((point) => <li key={point}>{point}</li>)}</ul>
-            </div>
-          ) : (
-            <p>Run a score to see the desk recommendation.</p>
-          )}
+          {result ? <AIReport response={result} title="Trade-in confidence report" /> : <p>Run a score to see the desk recommendation.</p>}
         </div>
       </div>
-    </div>
-  );
-}
-
-function Metric({ label, value }) {
-  return (
-    <div style={{ background: '#f5f7fb', borderRadius: 8, padding: 12 }}>
-      <div style={{ fontSize: 12, color: '#64748b' }}>{label}</div>
-      <strong>{value}</strong>
     </div>
   );
 }

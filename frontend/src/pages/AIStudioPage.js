@@ -1,3 +1,5 @@
+
+import AIReport from "../components/AIReport";
 import React, { useEffect, useState } from 'react';
 import {
   aiTradeInPhoto, aiInventoryAging, aiPaymentOptimizer, aiMarketDemand,
@@ -107,7 +109,22 @@ const SAMPLES = {
   },
 };
 
+function examplePayload(key, variant) {
+  const value = JSON.parse(JSON.stringify(SAMPLES[key].payload));
+  // These samples describe hypothetical requests and never choose a saved record.
+  if (value.inventory) value.inventory.forEach(item => { delete item.id; item.days_on_lot += variant * 14; });
+  if (value.vehicle_info) value.vehicle_info.mileage += variant * 8000;
+  if (value.credit_score) { value.credit_score += variant * 20; value.down_payment += variant * 1000; }
+  if (value.season) value.season = ['Spring', 'Summer', 'Winter'][variant];
+  if (value.customer) value.customer.household_income += variant * 10000;
+  if (value.customer_profile) value.customer_profile.ownership_horizon_years += variant;
+  if (value.trade_in) value.trade_in.odometer += variant * 5000;
+  if (value.rep_profile) value.rep_profile.tenure_months += variant * 6;
+  return value;
+}
+
 export default function AIStudioPage() {
+
   const [activeKey, setActiveKey] = useState('customer-persona');
   const [payload, setPayload] = useState(JSON.stringify(SAMPLES[activeKey].payload, null, 2));
   const [result, setResult] = useState(null);
@@ -190,6 +207,7 @@ export default function AIStudioPage() {
             <h2 style={{ marginTop: 0 }}>{active.label}</h2>
             <p style={{ color: '#94a3b8', marginTop: 4 }}>{active.description}</p>
 
+            <div className="ai-preset-bar"><div><strong>Complete dealership examples</strong><p>Each fills the complete editable JSON request, including nested and optional values. Fictional drafts require verification before use.</p></div><div className="ai-actions">{['Standard review', 'Cost sensitivity', 'Detailed review'].map((label, index) => <button key={label} type="button" className="btn btn-secondary" disabled={loading} onClick={() => setPayload(JSON.stringify(examplePayload(activeKey, index), null, 2))}>{label}</button>)}</div></div>
             <label style={{ display: 'block', marginTop: 16, marginBottom: 6, fontWeight: 600, fontSize: 13 }}>Request Payload (JSON)</label>
             <textarea
               value={payload}
@@ -232,7 +250,7 @@ export default function AIStudioPage() {
                     <th style={{ textAlign: 'left', padding: 8 }}>ID</th>
                     <th style={{ textAlign: 'left', padding: 8 }}>Feature</th>
                     <th style={{ textAlign: 'left', padding: 8 }}>Created</th>
-                    <th style={{ textAlign: 'left', padding: 8 }}>Preview</th>
+                    <th style={{ textAlign: 'left', padding: 8 }}>Report</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -241,8 +259,8 @@ export default function AIStudioPage() {
                       <td style={{ padding: 8 }}>#{h.id}</td>
                       <td style={{ padding: 8, fontSize: 12, color: '#a78bfa' }}>{h.feature}</td>
                       <td style={{ padding: 8, fontSize: 12 }}>{new Date(h.created_at).toLocaleString()}</td>
-                      <td style={{ padding: 8, fontSize: 12, color: '#94a3b8', maxWidth: 400, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {JSON.stringify(h.output).substring(0, 120)}...
+                      <td style={{ padding: 8, fontSize: 12, color: '#94a3b8', minWidth: 280 }}>
+                        <details><summary>Open saved report</summary><AIReport response={h.output} title={h.feature + " report"} /></details>
                       </td>
                     </tr>
                   ))}
