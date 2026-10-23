@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/inventory', require('./routes/inventory'));
+app.use('/api/feature-pack', require('./routes/featurePack29a'));
 app.use('/api/customers', require('./routes/customers'));
 app.use('/api/trade-ins', require('./routes/tradeins'));
 app.use('/api/trade-in-confidence', require('./routes/tradeInConfidence'));

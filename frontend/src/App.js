@@ -24,6 +24,7 @@ import DocumentsPage from './pages/DocumentsPage';
 import ReportsPage from './pages/ReportsPage';
 import SettingsPage from './pages/SettingsPage';
 import AIStudioPage from './pages/AIStudioPage';
+import FeaturePack29a from './pages/FeaturePack29a';
 import WebhooksPage from './pages/WebhooksPage';
 import CustomViewsPage from './pages/CustomViewsPage';
 import './App.css';
@@ -75,6 +76,7 @@ function App() {
 
             <Route path="/" element={<Dashboard />} />
             <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/feature-pack" element={<FeaturePack29a />} />
             <Route path="/customers" element={<CustomersPage />} />
             <Route path="/trade-ins" element={<TradeInsPage />} />
             <Route path="/trade-in-confidence" element={<TradeInConfidencePage />} />
